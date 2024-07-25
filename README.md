@@ -18,10 +18,12 @@ assert( response->text( ) )->not_initial( ).
 assert( response->header( 'Content-Type' ) )->eq( 'application/json' ).
 ```
 
-## Minimal requirements
+## Plugins
 
-It's not tested but intended to work at least with 747.
+- [Cloud fetch](https://github.com/abapify/fetch-cloud)
+- [Legacy fetch](https://github.com/abapify/fetch-legacy)
 
-## Dependencies
+
+## Other Dependencies
 - [assert](https://github.com/abapify/assert) - unit test assertions
 
