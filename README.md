@@ -19,5 +19,5 @@ assert( response->header( 'Content-Type' ) )->eq( 'application/json' ).
 ```
 
 ## Dependencies
-- [assert](../assert) - unit test assertions
+- [assert](https://github.com/abapify/assert) - unit test assertions
 
