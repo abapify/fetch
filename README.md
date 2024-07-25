@@ -18,5 +18,6 @@ assert( response->text( ) )->not_initial( ).
 assert( response->header( 'Content-Type' ) )->eq( 'application/json' ).
 ```
 
-# Dependencies
+## Dependencies
+- [assert](../assert) - unit test assertions
 
