@@ -9,7 +9,7 @@ So in few words we face a problem that same code should be written differently i
 
 ## The concept
 
-Let's make it possible to call something like
+Let's make it possible to call something like this which will work in any system
 ```abap
 data(response) = zcl_fetch=>by_url( 'https://petstore.swagger.io/v2/' )->fetch( 'swagger.json' ).
 assert( response->status )->eq( 200 ).
@@ -17,6 +17,10 @@ assert( response->body( ) )->not_initial( ).
 assert( response->text( ) )->not_initial( ).
 assert( response->header( 'Content-Type' ) )->eq( 'application/json' ).
 ```
+
+## Minimal requirements
+
+It's not tested but intended to work at least with 747.
 
 ## Dependencies
 - [assert](https://github.com/abapify/assert) - unit test assertions
