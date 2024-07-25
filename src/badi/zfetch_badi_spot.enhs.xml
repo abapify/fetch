@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_ENHS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <TOOL>BADI_DEF</TOOL>
+   <SHORTTEXT>Fetch Badi spot</SHORTTEXT>
+   <BADI_DATA>
+    <ENH_BADI_DATA>
+     <BADI_NAME>ZFETCH_REQUEST_BADI</BADI_NAME>
+     <INTERFACE_NAME>ZIF_FETCH_REQUEST_BADI</INTERFACE_NAME>
+     <SINGLE_USE>X</SINGLE_USE>
+     <CONTEXT_MODE>N</CONTEXT_MODE>
+     <DEFAULT_CLASS>ZCL_FETCH_REQUEST_BADI</DEFAULT_CLASS>
+     <FILTERS>
+      <ENH_BADI_FILTER>
+       <FILTER_NAME>RELEASE</FILTER_NAME>
+       <FILTER_TYPE>S</FILTER_TYPE>
+       <FILTERTEXT>System release</FILTERTEXT>
+      </ENH_BADI_FILTER>
+     </FILTERS>
+     <USE_FALLBACK_CLASS>X</USE_FALLBACK_CLASS>
+    </ENH_BADI_DATA>
+   </BADI_DATA>
+  </asx:values>
+ </asx:abap>
+</abapGit>
