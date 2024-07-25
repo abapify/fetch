@@ -10,7 +10,7 @@ So in few words we face a problem that same code should be written differently i
 ## The concept
 
 Let's make it possible to call something like
-```
+```abap
 data(response) = zcl_fetch=>by_url( 'https://petstore.swagger.io/v2/' )->fetch( 'swagger.json' ).
 assert( response->status )->eq( 200 ).
 assert( response->body( ) )->not_initial( ).
