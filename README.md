@@ -26,4 +26,5 @@ assert( response->header( 'Content-Type' ) )->eq( 'application/json' ).
 
 ## Other Dependencies
 - [assert](https://github.com/abapify/assert) - unit test assertions
+- [throw](https://github.com/abapify/throw) - throw an object as exception
 
