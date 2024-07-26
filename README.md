@@ -28,3 +28,6 @@ assert( response->header( 'Content-Type' ) )->eq( 'application/json' ).
 - [assert](https://github.com/abapify/assert) - unit test assertions
 - [throw](https://github.com/abapify/throw) - throw an object as exception
 
+## Alternative solutions
+- https://github.com/open-abap/cross-http-client by @larshp. WIP
+
