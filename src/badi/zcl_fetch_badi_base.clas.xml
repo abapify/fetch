@@ -3,9 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>ZCL_FETCH_REQUEST_BADI</CLSNAME>
+    <CLSNAME>ZCL_FETCH_BADI_BASE</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>Fetch badi fallback</DESCRIPT>
+    <DESCRIPT>Base class for fetch badi implementation</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

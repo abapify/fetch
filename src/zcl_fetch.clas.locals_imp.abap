@@ -119,7 +119,7 @@ class lcl_request implementation.
 
   method send.
 
-    data badi type ref to zfetch_request_badi.
+    data badi type ref to zfetch_badi.
 
     data(release) = conv string( sy-saprl ).
 
