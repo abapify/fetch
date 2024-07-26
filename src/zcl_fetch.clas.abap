@@ -14,22 +14,24 @@ class zcl_fetch definition
   class-methods fetch_from importing destination type ref to zif_fetch_destination
   returning value(result) type ref to zif_fetch.
 
-endclass.
+ENDCLASS.
 
 
 
-class zcl_fetch implementation.
+CLASS ZCL_FETCH IMPLEMENTATION.
 
-  method by_url.
-    return fetch_from( new lcl_destination_url( url ) ).
-  endmethod.
 
   method by_destination.
-    return fetch_from( new lcl_destination_rfc( destination ) ).
+    result = fetch_from( new lcl_destination_rfc( destination ) ).
   endmethod.
+
+
+  method by_url.
+    result = fetch_from( new lcl_destination_url( url ) ).
+  endmethod.
+
 
   method fetch_from.
-    return new lcl_fetch( destination ).
+    result = new lcl_fetch( destination ).
   endmethod.
-
-endclass.
+ENDCLASS.
