@@ -29,5 +29,5 @@ assert( response->header( 'Content-Type' ) )->eq( 'application/json' ).
 - [throw](https://github.com/abapify/throw) - throw an object as exception
 
 ## Alternative solutions
-- https://github.com/open-abap/cross-http-client by @larshp. WIP
+- https://github.com/open-abap/cross-http-client by [@larshp](https://github.com/larshp). WIP
 
