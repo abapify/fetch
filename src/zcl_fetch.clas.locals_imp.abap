@@ -41,83 +41,44 @@ class lcl_destination_rfc implementation.
   endmethod.
 endclass.
 
-class lcl_fetch definition.
+class lcl_fetch_request definition.
   public section.
-    methods constructor importing destination type ref to zif_fetch_destination.
-    interfaces zif_fetch.
-  private section.
-    data destination type ref to zif_fetch_destination.
-endclass.
-
-class lcl_request definition friends lcl_fetch.
-  public section.
-    interfaces zif_fetch_request.
-    interfaces zif_throw.
-
-    class-methods get
-      importing destination   type ref to zif_fetch_destination
-      returning value(result) type ref to lcl_request
-      raising   cx_static_check.
-  private section.
-    aliases throw for zif_throw~throw.
-    methods method  importing method  like zif_fetch_request~method.
-    methods path    importing path    like zif_fetch_request~path.
-    methods body    importing body    like zif_fetch_request~body.
-    methods headers importing headers like zif_fetch_request~headers.
-    methods send returning value(result) type ref to zif_fetch_response raising cx_static_check.
-endclass.
-
-class lcl_fetch implementation.
-  method constructor.
-    super->constructor( ).
-    me->destination = destination.
-  endmethod.
-  method zif_fetch~fetch.
-    data(request) = lcl_request=>get( me->destination ).
-
-    " set method
-    request->method( method ).
-*    " set path
-    request->path( path ).
-    " set body
-    request->body( body ).
-    " set headers
-    request->headers( headers ).
-
-    .   " fetch response from request
-    response = request->send( ).
-  endmethod.
+   interfaces zif_fetch_request_setter.
 endclass.
 
 
-class lcl_request implementation.
 
-  method zif_throw~throw.
-    new zcl_throw( )->throw( message ).
-  endmethod.
+class lcl_fetch_request implementation.
 
-  method method.
+  method zif_fetch_request_setter~method.
     me->zif_fetch_request~method = method.
   endmethod.
 
-  method path.
+  method zif_fetch_request_setter~path.
     me->zif_fetch_request~path = path.
   endmethod.
 
-  method body.
+  method zif_fetch_request_setter~body.
     me->zif_fetch_request~body = body.
   endmethod.
 
-  method headers.
+  method zif_fetch_request_setter~headers.
     me->zif_fetch_request~headers = headers.
   endmethod.
 
-  method get.
-    result = new #( ).
-    result->zif_fetch_request~destination = destination.
+  method zif_fetch_request_setter~destination.
+    me->zif_fetch_request~destination = destination.
   endmethod.
 
-  method send.
+endclass.
+
+class lcl_fetch_client definition.
+  public section.
+    interfaces zif_fetch_client.
+endclass.
+
+class lcl_fetch_client implementation.
+  method zif_fetch_client~fetch.
 
     data badi type ref to zfetch_badi.
 
@@ -129,11 +90,31 @@ class lcl_request implementation.
 
     call badi badi->fetch
       exporting
-        request  = me
+        request  = request
       receiving
-        response = result.
-
+        response = response.
 
   endmethod.
 
+  method zif_fetch_client~request.
+    result = new lcl_fetch_request(  ).
+  endmethod.
+
+endclass.
+
+
+
+class lcl_fetch_delegate definition inheriting from zcl_fetch_delegate.
+  public section.
+
+  protected section.
+
+    methods client redefinition.
+
+endclass.
+
+class lcl_fetch_delegate implementation.
+  method client.
+    result = new lcl_fetch_client( ).
+  endmethod.
 endclass.

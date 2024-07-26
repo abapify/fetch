@@ -5,8 +5,8 @@ inheriting from zcl_fetch_badi_base
   create public .
 
   public section.
-  interfaces zif_fetch_badi.
   protected section.
+  methods delegate redefinition.
   private section.
 endclass.
 
@@ -14,7 +14,7 @@ endclass.
 
 class zcl_fetch_badi_fallback implementation.
 
-  method zif_fetch_badi~fetch.
+  method delegate.
     throw( 'ABAP version not supported. Please install relevant fetch plugin' ).
   endmethod.
 

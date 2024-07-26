@@ -32,6 +32,6 @@ CLASS ZCL_FETCH IMPLEMENTATION.
 
 
   method fetch_from.
-    result = new lcl_fetch( destination ).
+    result = new lcl_fetch_delegate( destination ).
   endmethod.
 ENDCLASS.

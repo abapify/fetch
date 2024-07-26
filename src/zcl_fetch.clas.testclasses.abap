@@ -42,7 +42,7 @@ class ltcl_fetch implementation.
   endmethod.
 
   method check_swagger_json_response.
-    assert( response->status )->eq( 200 ).
+    assert( response->status( ) )->eq( 200 ).
     assert( response->body( ) )->not_initial( ).
     assert( response->text( ) )->not_initial( ).
     assert( response->header( 'Content-Type' ) )->eq( 'application/json' ).
