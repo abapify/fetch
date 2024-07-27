@@ -1,3 +1,4 @@
+"! Fetch API
 class zcl_fetch definition
   public
   final
@@ -5,20 +6,28 @@ class zcl_fetch definition
 
   public section.
 
-  class-methods by_url importing url type string returning value(result) type ref to zif_fetch.
-  class-methods by_destination importing destination type rfcdest returning value(result) type ref to zif_fetch.
+    "! Get fetch api by destination URL
+    class-methods by_url
+      importing url           type string
+      returning value(result) type ref to zif_fetch.
+
+    "! Get fetch api by HTTP RFC destination name
+    class-methods by_destination
+      importing destination   type rfcdest
+      returning value(result) type ref to zif_fetch.
 
   protected section.
   private section.
 
-  class-methods fetch_from importing destination type ref to zif_fetch_destination
-  returning value(result) type ref to zif_fetch.
+    "! Get fetch api from destination
+    class-methods fetch_from importing destination   type ref to zif_fetch_destination
+                             returning value(result) type ref to zif_fetch.
 
-ENDCLASS.
+endclass.
 
 
 
-CLASS ZCL_FETCH IMPLEMENTATION.
+class zcl_fetch implementation.
 
 
   method by_destination.
@@ -34,4 +43,4 @@ CLASS ZCL_FETCH IMPLEMENTATION.
   method fetch_from.
     result = new lcl_fetch_delegate( destination ).
   endmethod.
-ENDCLASS.
+endclass.
