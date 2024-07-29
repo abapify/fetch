@@ -1,11 +1,14 @@
 interface zif_fetch_request
   public .
 
-  interfaces zif_fetch_entity.
+  interfaces zif_fetch_entity_readable.
 
-  data method type string read-only.
-  data path type string read-only.
-  data body type xstring read-only.
-  data headers type zif_fetch_entity~header_tt.
+  aliases body for zif_fetch_entity_readable~body.
+  aliases text for zif_fetch_entity_readable~text.
+  aliases headers for zif_fetch_entity_readable~headers.
+  aliases header for zif_fetch_entity_readable~header.
+
+  methods path returning value(result) type string.
+  methods method returning value(result) type string.
 
 endinterface.
