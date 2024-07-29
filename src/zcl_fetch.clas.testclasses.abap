@@ -18,6 +18,7 @@ class ltcl_fetch implementation.
 
   " fetch by URL
   method by_url.
+
     data(lo_response) = zcl_fetch=>by_url( 'https://petstore.swagger.io/v2/swagger.json' )->fetch(  ).
     check_swagger_json_response( lo_response ).
   endmethod.

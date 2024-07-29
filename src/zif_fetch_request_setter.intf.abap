@@ -15,7 +15,9 @@ interface zif_fetch_request_setter
   methods headers
     importing headers like zif_fetch_request~headers.
 
-  methods destination
-    importing destination type ref to zif_fetch_destination.
+  methods header
+    importing
+        name type zif_fetch_entity=>header_ts-name
+        value type zif_fetch_entity=>header_ts-value.
 
 endinterface.

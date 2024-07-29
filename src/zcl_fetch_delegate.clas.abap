@@ -4,15 +4,16 @@ class zcl_fetch_delegate definition
 
   public section.
 
-  methods constructor importing destination type ref to zif_fetch_destination.
+    methods constructor importing destination type ref to zif_fetch_destination.
 
-  interfaces zif_fetch all methods final.
-  aliases fetch for zif_fetch~fetch.
+    methods client abstract
+      returning value(result) type ref to zif_fetch_client
+      raising   cx_static_check .
+    interfaces zif_fetch all methods final.
+    aliases fetch for zif_fetch~fetch.
   protected section.
-  data destination type ref to zif_fetch_destination.
-  methods client abstract
-    returning value(result) type ref to zif_fetch_client
-    raising cx_static_check .
+    data destination type ref to zif_fetch_destination.
+
   private section.
 
 endclass.
@@ -21,16 +22,14 @@ endclass.
 
 class zcl_fetch_delegate implementation.
   method constructor.
-  super->constructor( ).
-  me->destination = destination.
+    super->constructor( ).
+    me->destination = destination.
   endmethod.
   method zif_fetch~fetch.
 
     data(client)  = client( ).
     data(request) = client->request( ).
 
-    " set destination
-    request->destination( destination ).
     " set method
     request->method( method ).
 *    " set path
