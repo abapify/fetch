@@ -7,19 +7,37 @@ We used use `cl_http_client` during long time in our leagcy code. However curren
 
 So in few words we face a problem that same code should be written differently in different systems. So this project delivers the idea to have just one truly minimalistic facade which can plug-in different release-specific implementations.
 
-## The concept
+## How to use
 
 Let's make it possible to call something like this which will work in any system
 ```abap
+" we fetch in the same way doesn't matter which release is
+" this will work both in the cloud and in the legacy ( with installed plugin )
 data(response) = zcl_fetch=>by_url( 'https://petstore.swagger.io/v2/' )->fetch( 'swagger.json' ).
-assert( response->status )->eq( 200 ).
-assert( response->body( ) )->not_initial( ).
-assert( response->text( ) )->not_initial( ).
-assert( response->header( 'Content-Type' ) )->eq( 'application/json' ).
+" alternative calls
+" URL can be provided fully
+data(response2) = zcl_fetch=>by_url( 'https://petstore.swagger.io/v2/swagger.json' )->fetch( ).
+" not obligatory to use slash in the end of URL to build a right path
+data(response3) = zcl_fetch=>by_url( 'https://petstore.swagger.io/v2' )->fetch( 'swagger.json' ).
+" however is important to use relative path in the fetch method. Absolute path will overwrite original path
+" this will fetch /swagger.json but not /v2/swagger.json
+data(response4) = zcl_fetch=>by_url( 'https://petstore.swagger.io/v2/' )->fetch( '/swagger.json' ).
+
+" supported features:
+
+" access resposnse status
+check response->status( ) eq 200.
+" access body as binary
+data(body_as_binary) = response->body( ).
+" or as a text
+data(body_as_text) = response->text( ).
+" get header value
+data(content_type) = response->header( 'Content-Type' ).
+" or all headers
+data(all_headers) = response->headers( ).
 ```
 
 ## Plugins
-
 - [Cloud fetch](https://github.com/abapify/fetch-cloud)
 - [Legacy fetch](https://github.com/abapify/fetch-legacy)
 
