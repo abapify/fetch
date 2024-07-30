@@ -41,6 +41,7 @@ data(all_headers) = response->headers( ).
 
 ### Understanding the model
 In general here are core components of the model:
+
 ![](docs/puml/img/model.png)
 
 ### Using the model
