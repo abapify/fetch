@@ -41,40 +41,7 @@ data(all_headers) = response->headers( ).
 
 ### Understanding the model
 In general here are core components of the model:
-```
-@startuml
-class ZIF_FETCH_DESTINATION {
-    + client(): ZIF_FETCH_CLIENT
-}
 
-class ZIF_FETCH_CLIENT {
-    + request(): ZIF_FETCH_REQUEST
-    + fetch(request: ZIF_FETCH_REQUEST): ZIF_FETCH_RESPONSE
-}
-
-class ZIF_FETCH_REQUEST {
-    + body( body: binary )
-    + text( body: string )
-    + header(name: string)
-    + headers( name: table )
-    + method(method: string)
-    + path(path: string)
-}
-
-class ZIF_FETCH_RESPONSE {
-    + body( ): binary
-    + text( ): string
-    + header(name: string): string
-    + headers( ): table
-    + status( ): integer
-    + status_text( ): string
-}
-
-ZIF_FETCH_DESTINATION --> ZIF_FETCH_CLIENT : creates
-ZIF_FETCH_CLIENT --> ZIF_FETCH_REQUEST : creates
-ZIF_FETCH_CLIENT --> ZIF_FETCH_RESPONSE : returns
-@enduml
-```
 
 ## Plugins
 - [Cloud fetch](https://github.com/abapify/fetch-cloud)
