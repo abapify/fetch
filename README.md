@@ -41,7 +41,39 @@ data(all_headers) = response->headers( ).
 
 ### Understanding the model
 In general here are core components of the model:
+![](docs/puml/img/model.png)
 
+### Using the model
+```abap
+data(destination) = zcl_fetch_destination=>url( target_url )
+" or
+data(destination2) = zcl_fetch_destination=>rfc( http_rfc_destination_name )
+" or 
+data(destination3) = zcl_fetch_destination=>cloud( cloud_destination_name )
+
+" create a client
+data(client) = destination->client( ).
+
+" create a request
+data(request) = client->request( ).
+
+" change the request like
+request->method( 'POST' ).
+request->body( binary_payload ).
+request->header( name = 'Content-Type' value = 'application/json'  ).
+
+" fetch the request and get response
+data(response) = client->fetch( request ).
+
+" analyze response
+case response->status( ).
+    when 200.
+        data(response_body) = response->body( ).
+    when 500.
+        data(error_text) = response->text( ).
+endcase.
+
+```
 
 ## Plugins
 - [Cloud fetch](https://github.com/abapify/fetch-cloud)
