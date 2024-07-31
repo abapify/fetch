@@ -24,6 +24,7 @@
       "begin_end_names": true,
       "cds_parser_error": true,
       "check_ddic": true,
+      "cyclic_oo": true,
       "check_include": true,
       "check_syntax": true,
       "global_class": true,
