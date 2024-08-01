@@ -11,20 +11,33 @@ class zcl_fetch_delegate definition
       raising   cx_static_check .
     interfaces zif_fetch all methods final.
     aliases fetch for zif_fetch~fetch.
-  protected section.
-    data destination type ref to zif_fetch_destination.
+protected section.
 
+  data DESTINATION type ref to ZIF_FETCH_DESTINATION .
+
+  methods THROW final
+    importing
+      !MESSAGE type ANY optional raising cx_static_check .
   private section.
 
-endclass.
+ENDCLASS.
 
 
 
-class zcl_fetch_delegate implementation.
+CLASS ZCL_FETCH_DELEGATE IMPLEMENTATION.
+
+
   method constructor.
     super->constructor( ).
     me->destination = destination.
   endmethod.
+
+
+  method THROW.
+    new zcl_throw( )->throw( message ).
+  endmethod.
+
+
   method zif_fetch~fetch.
 
     data(client)  = client( ).
@@ -43,5 +56,4 @@ class zcl_fetch_delegate implementation.
 
 
   endmethod.
-
-endclass.
+ENDCLASS.
